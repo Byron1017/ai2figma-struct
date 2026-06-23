@@ -1,0 +1,33 @@
+{
+  "name": "ai2figma-struct",
+  "version": "1.0.0",
+  "description": "Codex Skill to structurally reconstruct AI-generated UI graphics in Figma",
+  "main": "SKILL.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Byron1017/ai2figma-struct.git"
+  },
+  "keywords": [
+    "codex",
+    "skill",
+    "figma",
+    "ui-rebuild",
+    "ai-design",
+    "ui-struct"
+  ],
+  "author": "Byron1017",
+  "license": "MIT",
+  "files": [
+    "SKILL.md",
+    "README.md",
+    "agents/",
+    "references/",
+    "scripts/"
+  ],
+  "bin": {
+    "ai2figma-install": "./scripts/install.js"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0"
+  }
+}
