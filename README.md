@@ -68,6 +68,22 @@ Then ask Codex to use the skill when working on Figma reconstruction tasks, for 
 Use $ai2figma-struct to rebuild this UI screenshot into editable Figma layers.
 ```
 
+Method 2: Install via NPM (Recommended)
+Standard two-step installation
+```bash
+# Pull the package from GitHub
+npm install git+https://github.com/Byron1017/ai2figma-struct.git
+
+# Auto copy skill files to your Codex skills directory
+npx ai2figma-install
+```
+
+One-click lazy install (No separate npm install step)
+Run this single command to download the repository and deploy the skill to .codex/skills automatically:
+```bash
+npx git+https://github.com/Byron1017/ai2figma-struct.git ai2figma-install
+```
+
 ## Comparison Sheet Script
 
 The helper script creates side-by-side QA images from a reference export and a rebuilt export.
