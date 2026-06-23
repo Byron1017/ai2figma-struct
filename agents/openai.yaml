@@ -1,0 +1,5 @@
+interface:
+  display_name: "AI2Figma Struct"
+  short_description: "Structured editable Figma reconstruction from UI screenshots"
+  default_prompt: "Use $ai2figma-struct to reconstruct this UI screenshot into editable Figma layers with pixel-level comparison."
+
