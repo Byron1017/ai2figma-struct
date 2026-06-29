@@ -59,6 +59,7 @@ Decision:
 - Do not rebuild the whole page to fix one crop, label, or card.
 - Do not create new global components while fixing a page unless the defect proves an existing component needs promotion/demotion.
 - If a component causes repeated drift, demote it and use page-local reconstruction.
+- Do not fix pixel drift by replacing a section with a large screenshot or UI-region bitmap. If an image asset is invalid for development handoff, demote it to reference-only, rebuild native structure, repair atomic assets, and continue with the best atomic/native fallback after the retry limit.
 
 ## Stop Criteria
 

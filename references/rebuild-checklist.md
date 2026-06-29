@@ -2,6 +2,10 @@
 
 Use this checklist when rebuilding a UI screenshot or generated UI image into editable Figma layers.
 
+## Development Handoff Rule
+
+The rebuilt file must be useful for program development. Pixel matching is important, but it must not be achieved by flattening UI into large bitmap regions. Use native/editable structure plus atomic image assets. If a supplied manifest asset is too large or mixed, treat it as reference-only, rebuild the area natively, and repair or generate the missing atomic assets.
+
 ## Reference Capture Prompt
 
 Use before analysis when the UI source may include browser chrome, Codex chat UI, editor panels, desktop background, surrounding whitespace, or other unrelated content:
@@ -55,7 +59,7 @@ Output a layer and asset reconstruction checklist:
    - page-local exceptions
 14. Likely fidelity risks.
 
-Do not use bitmap UI slices for text, cards, buttons, navigation, tags, or inputs.
+Do not use bitmap UI slices for text, cards, buttons, navigation, tags, inputs, whole lists, whole heroes, or app-shell regions. Visually complex skins/states may be image assets only when each file is one atomic development unit with clear ownership.
 Do not extract transparent PNG assets until after this checklist is complete.
 ```
 
@@ -105,6 +109,7 @@ After the table is complete, extract only the approved independent image/decorat
 
 Requirements:
 - Do not extract text, buttons, inputs, cards, tabs, tags, nav bars, dividers, simple icons, or page backgrounds as PNG assets.
+- Exception for structured packages: a visually non-native component skin/state may be an image asset when it is a single atomic unit, such as one button skin, one tab item state, one card skin, one icon state, or one shadow/glow layer. Do not extract the whole component group, full tab bar with labels, or mixed UI region.
 - Output transparent PNGs only for visual assets that are not practical to rebuild natively.
 - Use the smallest crop that contains the asset's intended visible pixels plus intentional padding.
 - Preserve each asset's visible bounds, opacity, softness, color temperature, edge antialiasing, and local crop.
@@ -150,6 +155,7 @@ Requirements:
 - Use native Figma Text for all text.
 - Use native Frame/Rectangle/Text/Vector/Auto Layout for cards, buttons, inputs, nav bars, tags, tabs, icon containers, dividers, and backgrounds.
 - Only photos, avatars, complex illustrations, generated pet/product images, and subtle decorative assets may remain images.
+- When consuming an ai2psd-struct package, also allow valid atomic skins/states/decorations from the manifest. Reject any active asset that is a whole UI region or must be cut again for development.
 - Use vector icons when practical; do not crop UI icons out of screenshots unless the icon is unusually complex.
 - Name layers clearly.
 - Use Auto Layout for page, sections, rows, columns, cards, and buttons.
@@ -210,6 +216,7 @@ If it is a light patch, keep it broad, soft, and low contrast.
 - Forgetting to apply the source-to-Figma scale ratio to extracted asset placement.
 - Starting with the wrong font size, causing the whole layout to become cramped or oversized.
 - Using bitmap slices for UI regions, making the design unusable for development.
+- Treating a manifest `approved` flag as enough even though the asset is a whole card/list/tab/hero or mixed text/control slice.
 - Replacing subtle flat decorations with 3D-looking generated assets.
 - Drawing complex animal silhouettes with Figma circles/rectangles instead of extracting a real local asset.
 - Inspecting only the full page, where small errors are hidden.
@@ -218,5 +225,5 @@ If it is a light patch, keep it broad, soft, and low contrast.
 
 ## Acceptance Rule
 
-A rebuilt page is acceptable only when the user can edit text, cards, buttons, colors, spacing, and radii independently, while the exported screenshot visually matches the source image at full-page and local-crop levels.
+A rebuilt page is acceptable only when the user can edit text, cards, buttons, colors, spacing, and radii independently, while all image assets are atomic/development-usable and the exported screenshot visually matches the source image at full-page and local-crop levels.
 

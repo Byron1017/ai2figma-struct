@@ -97,6 +97,21 @@ Fix:
 - validate alpha on light/dark/checkerboard
 - verify imageHash and node target
 
+### Invalid UI Region Slice
+
+An image asset is too large or mixed to be useful for development handoff.
+
+Examples:
+- whole card/list/tab/hero/app-shell bitmap
+- button group or tab bar slice with multiple labels
+- mixed text/control region used to satisfy pixel matching
+
+Fix:
+- demote the slice to reference-only
+- rebuild the area with native layers
+- repair or generate the missing atomic assets
+- after three failed attempts, keep the closest atomic/native result and record the residual mismatch
+
 ### Missing Asset
 
 An expected visual element is absent.

@@ -26,6 +26,7 @@ Required:
 - text, cards, buttons, tags, navigation, and controls are editable
 - repeated colors and text styles are reasonably consistent
 - complex visuals are separate image assets
+- image assets are atomic and development-usable; no large UI-region slices are active
 - no obvious missing assets
 - no obvious overlap or clipping
 - at least one full-page comparison exists
@@ -62,13 +63,15 @@ Required:
 - defect log per iteration
 - local crop checks for all visually dense sections
 - imageHash and scaleMode verification for assets
+- manifest preflight rejects invalid large UI-region slices before placement
 - explicit residual mismatch report
 
 Allowed:
 - only documented differences caused by platform rendering, unavailable fonts, or deliberate editability tradeoffs
+- active-best-effort atomic/native fallbacks after the repair retry limit
 
 ## Stop Rule
 
-Do not claim "100%" without evidence. Say what was compared, what passed, and what residual risks remain.
+Do not claim "100%" without evidence. Say what was compared, what passed, and what residual risks remain. Never claim pixel-critical success if the result depends on full-screen images, whole-card/list/tab/hero slices, or mixed UI bitmaps that are not development-usable.
 
 
